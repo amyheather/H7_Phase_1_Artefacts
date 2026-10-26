@@ -13,3 +13,10 @@ def say_hi_with_location(name, location):
 
 say_hi_with_location("Dan", "Cornwall")
 
+def say_hi_with_defaults(name="User", location="the world"):
+    print (f"Hi {name}!  How's {location} today?")
+
+say_hi_with_defaults()
+say_hi_with_defaults(name="Dan")
+say_hi_with_defaults(location="Cornwall")
+
