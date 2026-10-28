@@ -57,3 +57,14 @@ user_name, user_location, user_age = gather_user_details()
 print (f"Hi {user_name}!  How are things in {user_location}?")
 print (f"I've heard you'll be {user_age+1} at your next birthday.")
 
+def split_evens_and_odds(list_of_integers):
+    evens = [num for num in list_of_integers if num%2==0]
+    odds = [num for num in list_of_integers if num%2!=0]
+
+    return evens, odds
+
+list_of_integers = [1,2,3,4,5,6,7,8,9,10]
+even_numbers, odd_numbers = split_evens_and_odds(list_of_integers)
+print (f"Even numbers : {even_numbers}")
+print (f"Odd numbers : {odd_numbers}")
+
