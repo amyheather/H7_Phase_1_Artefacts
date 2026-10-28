@@ -42,6 +42,18 @@ def calculate_age(date_of_birth):
 dob_input = input("Input your date of birth in DD/MM/YYYY format: ")
 dob = datetime.strptime(dob_input, "%d/%m/%Y").date()
 
-#age_now = calculate_age(dob)
-#print (f"So you're {age_now}")
-print (f"So you're {calculate_age(dob)}")
+age_now = calculate_age(dob)
+print (f"So you're {age_now}")
+#print (f"So you're {calculate_age(dob)}")
+
+def gather_user_details():
+    name = input("What's your name? ")
+    location = input("Where are you from? ")
+    age = int(input("How old are you? "))
+
+    return name, location, age
+
+user_name, user_location, user_age = gather_user_details()
+print (f"Hi {user_name}!  How are things in {user_location}?")
+print (f"I've heard you'll be {user_age+1} at your next birthday.")
+
