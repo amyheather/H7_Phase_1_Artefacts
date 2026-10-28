@@ -42,6 +42,6 @@ def calculate_age(date_of_birth):
 dob_input = input("Input your date of birth in DD/MM/YYYY format: ")
 dob = datetime.strptime(dob_input, "%d/%m/%Y").date()
 
-age_now = calculate_age(dob)
-print (f"So you're {age_now}")
-
+#age_now = calculate_age(dob)
+#print (f"So you're {age_now}")
+print (f"So you're {calculate_age(dob)}")
