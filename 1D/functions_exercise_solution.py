@@ -1,6 +1,27 @@
 import random
 import time
 
+# Function to enter the name of a character, given a provided character type
+def enter_name(character_type):
+    name = input(f"What is the name of the {character_type}? ")
+    return name
+
+# Function to display the current player and enemy HP levels
+def display_hp(player_name, player_hp, enemy_name, enemy_hp):
+    print (f"{player_name} has {player_hp}HP")
+    print (f"{enemy_name} has {enemy_hp}HP")
+
+# Function to display who attacked who and with what strength, and how many
+# points of the attack were defended
+def display_attack_status(attacker, victim, atk_val, def_val):
+    print (f"{attacker} attacked {victim} with a power of {atk_val}.")
+    print (f"{victim} defended {def_val} points of the attack")
+
+# Function to display a victory / defeat message, based on a given victor and
+# victim
+def display_character_defeat(victor, victim):
+    print (f"{victim} has been defeated by {victor}")
+
 # Function to attack an enemy, given a player strength, enemy healh points and
 # enemy defence level
 def attack_enemy(player_str, enemy_hp, enemy_def):
@@ -56,27 +77,6 @@ def defend(player_hp, player_def, enemy_str):
 
     # Return the player's HP, whether the attack missed, and the defence value
     return player_hp, missed, defence_value
-
-# Function to enter the name of a character, given a provided character type
-def enter_name(character_type):
-    name = input(f"What is the name of the {character_type}? ")
-    return name
-
-# Function to display the current player and enemy HP levels
-def display_hp(player_name, player_hp, enemy_name, enemy_hp):
-    print (f"{player_name} has {player_hp}HP")
-    print (f"{enemy_name} has {enemy_hp}HP")
-
-# Function to display who attacked who and with what strength, and how many
-# points of the attack were defended
-def display_attack_status(attacker, victim, atk_val, def_val):
-    print (f"{attacker} attacked {victim} with a power of {atk_val}.")
-    print (f"{victim} defended {def_val} points of the attack")
-
-# Function to display a victory / defeat message, based on a given victor and
-# victim
-def display_character_defeat(victor, victim):
-    print (f"{victim} has been defeated by {victor}")
 
 # Function to perform a limit break, given a base strength level
 def perform_limit_break(base_str):
