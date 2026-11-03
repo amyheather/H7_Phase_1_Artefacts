@@ -1,4 +1,5 @@
 import random
+import time
 
 # TASK 3
 
@@ -56,6 +57,8 @@ enemy_def = 47
 player_name = enter_name("player")
 enemy_name = enter_name("enemy")
 
+sleep_time = 2
+
 while True:
     display_hp(
         player_name=player_name,
@@ -63,6 +66,7 @@ while True:
         enemy_name=enemy_name,
         enemy_hp=enemy_hp
     )
+    time.sleep(sleep_time)
 
     enemy_hp, missed, atk_val = attack_target(
         player_str=player_str,
@@ -71,6 +75,7 @@ while True:
     )
 
     display_attack_status(player_name, enemy_name, atk_val, enemy_def)
+    time.sleep(sleep_time)
 
     if missed:
         print (f"!!{player_name} MISSED!!")
@@ -86,11 +91,13 @@ while True:
     )
 
     display_attack_status(enemy_name, player_name, enemy_str, def_val)
+    time.sleep(sleep_time)
 
     if missed:
         print (f"!!{enemy_name} MISSED!!")
 
     if player_hp == 0:
         display_character_defeat(enemy_name, player_name)
+        time.sleep(sleep_time)
         break
 
