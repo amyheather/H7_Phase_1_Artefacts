@@ -46,13 +46,23 @@ def display_attack_status(attacker, victim, atk_val, def_val):
 def display_character_defeat(victor, victim):
     print (f"{victim} has been defeated by {victor}")
 
-player_hp = 100
+def perform_limit_break(base_str):
+    limit_break_power = random.randint(10, 40)
+    total_lb_attack_value = limit_break_power + base_str
+    print (f"+++LIMIT BREAK ENGAGED!  ATTACK POWER {total_lb_attack_value}")
+    return total_lb_attack_value
+
+player_hp = 50
+base_player_hp = player_hp
 player_str = 50
+base_player_str = player_str
 player_def = 27
 
-enemy_hp = 100
+enemy_hp = 50
 enemy_str = 30
 enemy_def = 47
+
+limit_break_prob = 0.1
 
 player_name = enter_name("player")
 enemy_name = enter_name("enemy")
@@ -67,6 +77,10 @@ while True:
         enemy_hp=enemy_hp
     )
     time.sleep(sleep_time)
+
+    if player_hp < (0.5 * base_player_hp):
+        if random.random() < limit_break_prob:
+            player_str = perform_limit_break(player_str)
 
     enemy_hp, missed, atk_val = attack_target(
         player_str=player_str,
@@ -101,3 +115,4 @@ while True:
         time.sleep(sleep_time)
         break
 
+    player_str = base_player_str
