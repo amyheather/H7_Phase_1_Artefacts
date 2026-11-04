@@ -5,11 +5,11 @@ def extract_words_starting_with_s(list_of_words):
     provided by the user.
 
     Args:
-        list_of_words: A list of words from which to extract.
+        list_of_words: A list of words from which to extract
 
     Returns:
         A list containing only those words that begin with the letter s from
-            the provided list of words.
+        the provided list of words.
 
     """
     list_of_s_words = [
