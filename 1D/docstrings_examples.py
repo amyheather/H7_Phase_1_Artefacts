@@ -8,8 +8,8 @@ def extract_words_starting_with_s(list_of_words):
         list_of_words: A list of words from which to extract.
 
     Returns:
-        list_of_s_words: A list containing only those words that begin with the
-            letter s
+        A list containing only those words that begin with the letter s from
+            the provided list of words.
 
     """
     list_of_s_words = [
