@@ -1,96 +1,142 @@
 import random
 import time
 
-# Function to enter the name of a character, given a provided character type
-def enter_name(character_type):
+def enter_name(character_type: str) -> str:
+    """Capture a character name from the user for the given character type
+    and return it.
+
+    Args:
+        character_type: The type of character to be named.
+
+    Returns:
+        The name input by the user.
+    """
     name = input(f"What is the name of the {character_type}? ")
     return name
 
-# Function to display the current player and enemy HP levels
-def display_hp(player_name, player_hp, enemy_name, enemy_hp):
+def display_hp(
+    player_name: str, player_hp: int, enemy_name: str, enemy_hp: str
+):
+    """Display messages confirming the current player and enemy names and their
+    levels of HP
+
+    Args:
+        player_name: Name of the player.
+        player_hp: Health Points of the player.
+        enemy_name: Name of the enemy.
+        enemy_hp: Health Points of the enemy.
+    """
     print (f"{player_name} has {player_hp}HP")
     print (f"{enemy_name} has {enemy_hp}HP")
 
-# Function to display who attacked who and with what strength, and how many
-# points of the attack were defended
-def display_attack_status(attacker, victim, atk_val, def_val):
+def display_attack_status(
+    attacker: str, victim: str, atk_val: int, def_val: int
+):
+    """Display who attacked who and with what strength, as well as who
+    defended, and how many points of the attack were defended.
+
+    Args:
+        attacker: Name of the attacker.
+        victim: Name of the victim.
+        atk_val: Value of the attack in attack points.
+        def_val: Value of the defence in defence points.
+    """
     print (f"{attacker} attacked {victim} with a power of {atk_val}.")
     print (f"{victim} defended {def_val} points of the attack")
 
-# Function to display a victory / defeat message, based on a given victor and
-# victim
-def display_character_defeat(victor, victim):
+def display_character_defeat(victor: str, victim: str):
+    """Display the victory / defeat message for a given victor and victim.
+
+    Args:
+        victor: Name of the victor.
+        victim: Name of the victim.
+    """
     print (f"{victim} has been defeated by {victor}")
 
-# Function to attack an enemy, given a player strength, enemy healh points and
-# enemy defence level
-def attack_enemy(player_str, enemy_hp, enemy_def):
-    # Randomly pick an attack modifier
+def attack_enemy(
+    player_str: int, enemy_hp: int, enemy_def: int
+) -> int, bool, int:
+    """Attack the enemy by randomly modifying the strength of the player and
+    using that as the attack value.  If the attack value exceeds the enemy's
+    defence, reduce their HP by the amount that the attack exceeds the defence.
+    Otherwise flag that the attack missed.  Set any negative HP values to 0.
+    
+    Args:
+        player_str: Strength statistic of the player.
+        enemy_hp: Current Health Points of the enemy.
+        enemy_def: Defence statistic of the enemy.
+
+    Returns:
+        The resultant enemy HP, whether the attack missed and the attack value 
+        that was calculated.
+    """
     random_atk_modifier = random.randint(-5,5)
 
-    # Calculate the attack value as player strength modified by the random
-    # modifier value
     attack_value = player_str + random_atk_modifier
 
-    # Set up boolean to store if the attack missed, defaulting to False
     missed = False
 
-    # If the attack value exceeds the enemy's defence, then reduce the enemy's
-    # HP by the amount above the enemy's defence level.
     if attack_value > enemy_def:
         enemy_hp -= (attack_value - enemy_def)
-        # If the enemy HP is now less than 0, set it to 0
         if enemy_hp < 0:
             enemy_hp = 0
-    # If the attack value doesn't exceed the enemy's defence level, flag the
-    # attack has missed
     else:
         missed = True
 
-    # Return the enemy's HP, whether the attack missed, and the attack value
     return enemy_hp, missed, attack_value
 
-# Function to defend from an enemy attack, given a player HP, player's level of
-# defence and the enemy's strength
-def defend(player_hp, player_def, enemy_str):
-    # Randomly pick a defence modifier
+def defend(
+    player_hp: int, player_def: int, enemy_str: int
+) -> int, bool, int:
+    """Defend from an enemy attack by randomly modifying the player's defence
+    statistic and using that as the defence value.  If the enemy's strength
+    exceeds the player's defence value, the player's HP is reduced by the
+    amount the defence value is exceeded.  Otherwise flag that the attack
+    missed.  Set any negative HP values to 0.
+
+    Args:
+        player_hp: Current Health Points of the player.
+        player_def: Defence statistic of the player.
+        enemy_str: Strength statistic of the enemy.
+
+    Returns:
+        The resultant player HP, whether the attack missed and the calculated
+        defence value.
+    """
     random_def_modifier = random.randint(-5,5)
 
-    # Calulcate the defence value as player's defence modified by the random
-    # modifier value
     defence_value = player_def + random_def_modifier
 
-    # Set up a boolean to store if the attack missed, defaulting to False
     missed = False
 
-    # If the defence value is less than the enemy's strength, reduce the
-    # player's HP by the amount their strength exceeds the defence value
     if defence_value < enemy_str:
         player_hp -= (enemy_str - defence_value)
-        # If the player's HP is now less than 0, set it to 0
         if player_hp < 0:
             player_hp = 0
-    # If the enemy's strength did not exceed the player's defence value, flag
-    # the attack missed
     else:
         missed = True
 
-    # Return the player's HP, whether the attack missed, and the defence value
     return player_hp, missed, defence_value
 
-# Function to perform a limit break, given a base strength level
-def perform_limit_break(base_str):
-    # Randomly determine the additional attack value of the limit break
+def perform_limit_break(base_str: str) -> int:
+    """Perform a limit break and therefore augment the strength of the
+    character.  Randomly select an augmentation value for the limit break, and
+    add it to the character's base strength statistic.  Display a message
+    saying that a limit break has engaged, with the total resultant strength
+    value.
+
+    Args:
+        base_str: The base strength statistic of the character.
+
+    Returns:
+        The augmented strength statistic after the limit break has applied.
+    """
     limit_break_power = random.randint(10, 40)
 
-    # Calculate the total attack value as the limit break power added to the
-    # base strength level
     total_lb_attack_value = limit_break_power + base_str
 
-    # Print a message indicating a limit break has engaged, and its power
     print (f"+++LIMIT BREAK ENGAGED!  ATTACK POWER {total_lb_attack_value}")
 
-    # Return the total limit break attack value
     return total_lb_attack_value
 
 # Set up the player's HP, strength and defence values.  Take copies of the
